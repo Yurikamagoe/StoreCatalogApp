@@ -1,4 +1,8 @@
+using StoreCatalogApi.Infra.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSqlServer<ApplicationDbContext>(
+builder.Configuration["ConnectionString:StoreCatalogApi"]);
 
 // Add services to the container.
 
