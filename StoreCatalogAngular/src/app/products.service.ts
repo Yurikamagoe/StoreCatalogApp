@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ProductsService {
-  url = 'https://localhost:5001/api/product'
+  url = 'https://localhost:7117/api/Product'
 
   constructor(private http: HttpClient) { }
 

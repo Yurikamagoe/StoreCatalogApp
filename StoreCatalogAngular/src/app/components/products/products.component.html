@@ -1,9 +1,39 @@
-<div class="container p-5">
+<div class="container p-5" *ngIf="visibilityTable">
+    <div class="border boder-light rounded p-5">
+        <div>
+            <button type="button" class="btn btn-sm btn-secondary"(click)="ShowForm()">Novo Produto</button>
+    </div>
+
+
+    <hr/>
+
+    <table class="table table-striped table-hover table-sm" *ngIf="productList">
+        <tr class="thead-light">
+            <th>Nome</th>
+            <th>Preco</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Data de Registro</th>
+            <th>Tipo</th>
+        </tr>
+        <tr *ngFor="let product of productList">
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.registerDate}}</td>
+            <td>{{product.type}}</td>
+        </tr>
+    </table>
+</div> 
+</div>
+
+<div class="container p-5" *ngIf="visibilityForm">
     <div class="row">
         <div class="col-6 border boder-light rounded p-5 shadow" *ngIf="productForm">
             <h6>{{formTitle}}</h6>
             <hr/>
-            <form [formGroup]="productForm">
+            <form [formGroup]="productForm" (ngSubmit)="SendForm()">
                 <div class="form-group">
                     <label>Nome</label>
                     <input type="text" class="form-control form-control-sm" formControlName="name">
@@ -31,7 +61,7 @@
 
                 <div class="form-group">
                     <label>Tipo de produto</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" formControlName="type">
                         <option selected>Selecione uma opção</option>
                         <option value="0">Orgânico</option>
                         <option value="1">Não Orgânico</option>
@@ -40,7 +70,7 @@
                 <div class="container">
                     <div class="row p-5">
                             <button type="submit" class="btn btn-sm btn-outline-secondary">Salvar</button>
-                            <button type="button" class="btn btn-sm btn-light">Voltar</button>
+                            <button type="button" class="btn btn-sm btn-light"(click)="Back()">Voltar</button>
                     </div>
                 </div>
             </form>
