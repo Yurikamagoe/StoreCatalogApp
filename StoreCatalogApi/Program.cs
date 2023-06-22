@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Builder;
 using StoreCatalogApi.Infra.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSqlServer<ApplicationDbContext>(
 builder.Configuration["ConnectionString:ConectionDB"]);
+builder.Services.AddCors();
 
 // Add services to the container.
 
@@ -21,6 +23,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseAuthorization();
 
